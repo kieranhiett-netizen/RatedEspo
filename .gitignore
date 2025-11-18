@@ -1,0 +1,25 @@
+# System / shell stuff (if ever copied in here)
+.ssh/
+.bash*
+.profile
+.cache/
+*.log
+
+# Archives and dumps (usually huge / sensitive)
+*.tar.gz
+*.sql
+
+# Docker runtime data (if you ever map these)
+data/
+volumes/
+*/data
+*/volumes
+
+# Backups
+espocrm-backups/*.tar.gz
+espocrm-docker/espocrm-backup.sql
+
+# Node / build (if you add frontends / tools later)
+node_modules/
+dist/
+build/
