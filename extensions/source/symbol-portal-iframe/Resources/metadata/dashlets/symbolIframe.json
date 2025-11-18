@@ -1,0 +1,6 @@
+{
+  "view": "SymbolPortalIframe:views/dashlets/symbol-iframe",
+  "label": "Symbol Portal",
+  "description": "Embedded Symbol portal with Azure login.",
+  "acl": "read"
+}
