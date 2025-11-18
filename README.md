@@ -40,6 +40,14 @@ docker compose up -d
 
 Notes
 
-If we build custom EspoCRM extensions in the future, they’ll live in this repo under an extensions/ folder.
+Extensions workflow
+
+- `extensions/source/` – source code for each custom EspoCRM extension (one folder per extension).
+- `extensions/packages/` – zipped extension builds that get installed on Espo; commit them so deployments are reproducible.
+- `extensions/install-extension.sh` – helper script that copies a package into the `espocrm` container, runs Espo’s CLI installer, and triggers a rebuild. Usage:
+
+```
+./extensions/install-extension.sh extensions/packages/my-extension-1.0.0.zip
+```
 
 Backups and database dumps are intentionally excluded from Git.
