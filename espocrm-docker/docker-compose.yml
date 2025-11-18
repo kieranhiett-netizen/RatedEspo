@@ -9,6 +9,9 @@ services:
       MARIADB_PASSWORD: database_password
     volumes:
       - espocrm-db:/var/lib/mysql
+      - ./custom/Espo:/var/www/html/custom/Espo
+      - ./client-custom:/var/www/html/client/custom
+
     restart: always
     ports:
       - "3306:3306"
