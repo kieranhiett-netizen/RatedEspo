@@ -6,6 +6,5 @@
   "description": "Dashlet that embeds the Symbol portal (Azure AD login) in an iframe.",
   "acceptableVersions": [
     ">=7.0.0"
-  ],
-  "author": "Rated People"
+  ]
 }
