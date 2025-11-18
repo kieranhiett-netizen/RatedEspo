@@ -23,3 +23,5 @@ espocrm-docker/espocrm-backup.sql
 node_modules/
 dist/
 build/
+extensions/packages/*.zip
+
