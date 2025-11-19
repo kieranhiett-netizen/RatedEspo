@@ -1,0 +1,8 @@
+{
+    "fields": {
+        "cUserID": "User_Id"
+    },
+    "options": {
+        "cUserID": []
+    }
+}
