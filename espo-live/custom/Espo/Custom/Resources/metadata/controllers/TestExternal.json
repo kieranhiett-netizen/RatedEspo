@@ -1,0 +1,8 @@
+{
+    "modifications": {
+      "TestExternal": {
+        "className": "Espo\\Custom\\Controllers\\TestExternal"
+      }
+    }
+  }
+  
