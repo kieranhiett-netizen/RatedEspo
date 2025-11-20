@@ -1,13 +1,12 @@
 {
-  "routes": [
-    {
+  "routes": {
+    "testExternalAccount": {
       "method": "GET",
-      "route": "/TestExternal/account/:id",
+      "route": "TestExternal/account/:id",
       "params": {
         "controller": "TestExternal",
-        "action": "getAccount"
+        "action": "account"
       }
     }
-  ]
+  }
 }
-
