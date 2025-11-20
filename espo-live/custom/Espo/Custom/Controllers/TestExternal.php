@@ -6,9 +6,10 @@ use Espo\Core\Controllers\Base;
 
 class TestExternal extends Base
 {
-    protected $defaultAction = 'index';
+    // IMPORTANT: Controller actions MUST be named "actionXyz"
+    // and no defaultAction override unless explicitly needed.
 
-    public function getAccount($params, $data, $request)
+    public function actionGetAccount($params, $data, $request)
     {
         $id = $params['id'] ?? null;
 
@@ -19,4 +20,3 @@ class TestExternal extends Base
         return $this->getService('TestExternal')->getAccountData($id);
     }
 }
-
