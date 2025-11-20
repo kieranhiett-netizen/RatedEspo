@@ -26,12 +26,9 @@ class TestExternal extends Base
             return ['rows' => []];
         }
 
-        // Custom field cUserId on the Account (maps to DB column c_user_id)
-        $cUserId = $account->get('cUserId');
-
-        if (!$cUserId) {
-            return ['rows' => []];
-        }
+        // ⭐ TEMP: for now, ignore cUserId and use the real tradesperson_id (101)
+        // Later we can swap this back to a field on the Account.
+        $tradespersonId = 101;
 
         // Use PDO from the same EntityManager connection
         $pdo = $entityManager->getPDO();
@@ -43,7 +40,7 @@ class TestExternal extends Base
         ";
 
         $sth = $pdo->prepare($sql);
-        $sth->execute(['userId' => $cUserId]);
+        $sth->execute(['userId' => $tradespersonId]);
 
         $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
