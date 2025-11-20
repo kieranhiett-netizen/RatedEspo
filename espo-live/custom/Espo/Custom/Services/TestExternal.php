@@ -2,11 +2,9 @@
 
 namespace Espo\Custom\Services;
 
-use Espo\Core\Services\Base;
-
-class TestExternal extends Base
+class TestExternal extends \Espo\Services\Base
 {
-    public function getAccountData($accountId)
+    public function getAccountData(string $accountId): array
     {
         $account = $this->getEntityManager()->getEntity('Account', $accountId);
 
