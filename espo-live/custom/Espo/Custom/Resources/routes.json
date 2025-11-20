@@ -1,0 +1,10 @@
+[
+  {
+    "route": "/testExternalAccount/:id",
+    "method": "get",
+    "params": {
+      "controller": "TestExternal",
+      "action": "account"
+    }
+  }
+]
