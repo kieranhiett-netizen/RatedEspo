@@ -2,55 +2,30 @@
 
 namespace Espo\Custom\Services;
 
-use Espo\Core\Templates\Services\Base;
-use PDO;
+use Espo\Core\Services\Base;
 
 class TestExternal extends Base
 {
-    /**
-     * @param string $accountId
-     */
-    public function getAccountData(string $accountId): array
+    public function getAccountData($accountId)
     {
-        if (empty($accountId)) {
-            return ['rows' => []];
-        }
-
         $account = $this->getEntityManager()->getEntity('Account', $accountId);
 
-        if (!$account) {
+        if (!$account || empty($account->get('cUserId'))) {
             return ['rows' => []];
         }
 
-        $cUserId = $account->get('cUserId');
+        $userId = $account->get('cUserId');
 
-        if (empty($cUserId)) {
-            return ['rows' => []];
-        }
+        $sql = "
+            SELECT *
+            FROM test_external
+            WHERE tradesperson_id = :userId
+        ";
 
-        $rows = [];
+        $pdo = $this->getEntityManager()->getPDO();
+        $sth = $pdo->prepare($sql);
+        $sth->execute(['userId' => $userId]);
 
-        try {
-            $pdo = $this->getEntityManager()->getPDO();
-            $statement = $pdo->prepare(
-                'SELECT * FROM test_external WHERE tradesperson_id = :id'
-            );
-            $statement->bindValue(':id', (int) $cUserId, PDO::PARAM_INT);
-            $statement->execute();
-
-            $rows = $statement->fetchAll(PDO::FETCH_ASSOC) ?: [];
-        } catch (\Throwable $e) {
-            $this->getLogger()->error(
-                sprintf(
-                    'Failed to fetch external data for account %s (cUserId %s): %s',
-                    $accountId,
-                    $cUserId,
-                    $e->getMessage()
-                )
-            );
-        }
-
-        return ['rows' => $rows];
+        return ['rows' => $sth->fetchAll(\PDO::FETCH_ASSOC)];
     }
 }
-
