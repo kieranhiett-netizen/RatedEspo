@@ -4,5 +4,8 @@
     },
     "options": {
         "cUserID": []
+    },
+    "labels": {
+        "Test External": "Test External"
     }
 }
