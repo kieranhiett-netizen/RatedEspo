@@ -2,28 +2,18 @@
 
 namespace Espo\Custom\Services;
 
-class TestExternal extends \Espo\Services\Base
+use Espo\Services\Base;
+
+class TestExternal extends Base
 {
-    public function getAccountData(string $accountId): array
+    /**
+     * Return external data for an Account.
+     * For now just return an empty rows array so nothing breaks.
+     */
+    public function getAccountData(string $id): array
     {
-        $account = $this->getEntityManager()->getEntity('Account', $accountId);
-
-        if (!$account || empty($account->get('cUserId'))) {
-            return ['rows' => []];
-        }
-
-        $userId = $account->get('cUserId');
-
-        $sql = "
-            SELECT *
-            FROM test_external
-            WHERE tradesperson_id = :userId
-        ";
-
-        $pdo = $this->getEntityManager()->getPDO();
-        $sth = $pdo->prepare($sql);
-        $sth->execute(['userId' => $userId]);
-
-        return ['rows' => $sth->fetchAll(\PDO::FETCH_ASSOC)];
+        return [
+            'rows' => [],
+        ];
     }
 }
