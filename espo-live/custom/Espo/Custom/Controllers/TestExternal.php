@@ -2,22 +2,33 @@
 
 namespace Espo\Custom\Controllers;
 
-use Espo\Core\Controllers\Base;
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
+use Espo\Core\Exceptions\BadRequest;
+use Espo\Custom\TestExternal\AccountService;
 
-class TestExternal extends Base
+class TestExternal
 {
-    public static $defaultAction = 'index';
+    public function __construct(
+        private AccountService $accountService,
+    ) {}
 
-    public function getActionAccount(Request $request, Response $response)
-    {
-        $id = $request->getRouteParam('id');
+    /**
+     * GET /api/v1/TestExternal/account/{id}
+     */
+    public function getActionAccount(
+        Request $request,
+        Response $response,
+        array $params
+    ): void {
+        $id = $params['id'] ?? null;
 
         if (!$id) {
-            return ['rows' => []];
+            throw new BadRequest("Account ID is required.");
         }
 
-        return $this->getService('TestExternal')->getAccountData($id);
+        $data = $this->accountService->getAccountData($id);
+
+        $response->writeBody($data);
     }
 }
