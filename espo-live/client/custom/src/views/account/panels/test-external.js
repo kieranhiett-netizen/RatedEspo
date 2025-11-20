@@ -1,4 +1,4 @@
-define('custom:views/account/panels/test-external', ['view'], function (Dep) {
+define('custom:views/account/panels/test-external', ['views/record/panels/bottom'], function (Dep) {
     return Dep.extend({
         template: 'custom:account/panels/test-external',
 
