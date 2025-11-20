@@ -5,8 +5,8 @@ define('custom:views/account/panels/test-external', ['views/record/panels/bottom
         name: 'testExternal',
 
         // Use a stock template so .tpl can't break anything
-        template: 'record/panels/bottom',
-
+        template: 'custom:account/panels/test-external',
+        
         init: function () {
             Dep.prototype.init.call(this);
         },
