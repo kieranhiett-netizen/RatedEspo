@@ -47,6 +47,18 @@
     "testExternal": {
         "index": 9,
         "label": "Test External",
-        "view": "custom:views/account/panels/test-external"
+        "view": "custom:views/account/panels/test-external", 
+        
+        "_tabBreak_4": {
+            "index": 10,
+            "tabBreak": true,
+            "tabLabel": "Purchased Leads"
+        },
+        "purchasedLeads": {
+            "index": 11,
+            "label": "Purchased Leads",
+            "view": "custom:views/account/panels/purchased-leads"
+        }
+    
     }
 }
