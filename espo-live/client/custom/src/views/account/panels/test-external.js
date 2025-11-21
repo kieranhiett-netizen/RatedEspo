@@ -63,6 +63,9 @@ Espo.define('custom:views/account/panels/test-external', 'view', function (Dep) 
         render: function () {
             Dep.prototype.render.call(this);
         
+            console.log('TestExternal panel: render, isLoading =', this.isLoading,
+                'error =', this.error,
+                'rows =', this.rows);
             // Simple escape helper to avoid XSS and avoid relying on getHelper
             function esc(v) {
                 if (v === null || v === undefined) {
