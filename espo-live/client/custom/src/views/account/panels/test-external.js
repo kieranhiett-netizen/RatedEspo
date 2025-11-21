@@ -86,11 +86,11 @@ Espo.define('custom:views/account/panels/test-external', 'view', function (Dep) 
 
             var html = '';
 
-            // Top toolbar with refresh button
+            // Top-right refresh button
             html += '<div class="clearfix" style="margin-bottom: 8px;">' +
                 '<button type="button" class="btn btn-default btn-sm pull-right test-external-refresh"' +
                 (this.isLoading ? ' disabled' : '') + '>' +
-                (this.isLoading ? 'Refreshing…' : 'Refresh') +
+                (this.isLoading ? 'Refreshing…' : 'Refresh user plans') +
                 '</button>' +
                 '</div>';
 
@@ -102,33 +102,39 @@ Espo.define('custom:views/account/panels/test-external', 'view', function (Dep) 
             } else if (!this.rows || !this.rows.length) {
                 html += '<div class="text-muted">No external data found for this account.</div>';
             } else {
-                // Use the first row only
-                var row = this.rows[0] || {};
+                html += '<h4 style="margin-top: 0;">Current Subscription</h4>';
 
-                html += '<table class="table table-bordered table-sm">';
-                html += '<tbody>';
+                html += '<table class="table table-bordered table-sm">' +
+                    '<thead>' +
+                        '<tr>' +
+                            '<th>Plan Name</th>' +
+                            '<th>Status</th>' +
+                            '<th>Start Date</th>' +
+                            '<th>End Date</th>' +
+                        '</tr>' +
+                    '</thead>' +
+                    '<tbody>';
 
-                html += '<tr><th>Tradesperson ID</th><td>' +
-                    esc(row.tradesperson_id) +
-                    '</td></tr>';
+                // Support multiple rows in case you add more plans later
+                (this.rows || []).forEach(function (row) {
+                    var planName = row.current_plan_code || '';
+                    var status = row.status || 'Active';
+                    var startDate = row.start_date || row.created_at || '';
+                    var endDate = row.end_date || row.next_renewal_date || '';
 
-                html += '<tr><th>Current Plan</th><td>' +
-                    esc(row.current_plan_code) +
-                    '</td></tr>';
+                    html += '<tr>' +
+                        '<td>' + esc(planName) + '</td>' +
+                        '<td>' + esc(status) + '</td>' +
+                        '<td>' + esc(startDate) + '</td>' +
+                        '<td>' + esc(endDate) + '</td>' +
+                    '</tr>';
+                });
 
-                html += '<tr><th>Next Renewal</th><td>' +
-                    esc(row.next_renewal_date) +
-                    '</td></tr>';
-
-                html += '<tr><th>Created At</th><td>' +
-                    esc(row.created_at) +
-                    '</td></tr>';
-
-                html += '</tbody>';
-                html += '</table>';
+                html += '</tbody></table>';
             }
 
             this.$el.html(html);
         }
+
     });
 });
