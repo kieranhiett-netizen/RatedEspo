@@ -24,32 +24,39 @@ Espo.define('custom:views/account/panels/test-external', 'view', function (Dep) 
         fetchData: function () {
             var self = this;
             var id = this.model && this.model.id;
-
+        
+            console.log('TestExternal panel: fetchData called, id =', id);
+        
             if (!id) {
                 this.rows = [];
                 this.error = 'No Account ID found.';
                 this.render();
                 return;
             }
-
+        
             this.isLoading = true;
             this.error = null;
             this.render(); // show loading state
-
+        
             Espo.Ajax.getRequest('testExternalAccount/' + id)
                 .then(function (response) {
+                    console.log('TestExternal panel: API response', response);
+        
                     self.isLoading = false;
                     self.rows = (response && response.rows) ? response.rows : [];
                     self.error = null;
                     self.render();
                 })
                 .catch(function (xhr) {
+                    console.log('TestExternal panel: API error', xhr);
+        
                     self.isLoading = false;
                     self.rows = [];
                     self.error = 'Failed to load external data.';
                     self.render();
                 });
         },
+        
 
         render: function () {
             Dep.prototype.render.call(this);
