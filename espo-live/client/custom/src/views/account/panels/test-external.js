@@ -2,6 +2,8 @@ Espo.define('custom:views/account/panels/test-external', 'view', function (Dep) 
 
     return Dep.extend({
 
+        template: 'custom:account/panels/test-external',
+
         // Optional: nice panel label (can also come from layout)
         label: 'Test External',
 
