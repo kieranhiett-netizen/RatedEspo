@@ -26,21 +26,25 @@ class TestExternal extends Base
             return ['rows' => []];
         }
 
-        // ⭐ TEMP: for now, ignore cUserId and use the real tradesperson_id (101)
-        // Later we can swap this back to a field on the Account.
-        $tradespersonId = 101;
+        // Use the custom field cUserId (DB column c_user_id)
+        $cUserId = $account->get('cUserId');
+
+        if (empty($cUserId)) {
+            // No external ID on this account, nothing to look up
+            return ['rows' => []];
+        }
 
         // Use PDO from the same EntityManager connection
         $pdo = $entityManager->getPDO();
 
         $sql = "
-            SELECT *
+            SELECT id, tradesperson_id, current_plan_code, next_renewal_date, created_at
             FROM test_external
             WHERE tradesperson_id = :userId
         ";
 
         $sth = $pdo->prepare($sql);
-        $sth->execute(['userId' => $tradespersonId]);
+        $sth->execute(['userId' => (int) $cUserId]);
 
         $rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
