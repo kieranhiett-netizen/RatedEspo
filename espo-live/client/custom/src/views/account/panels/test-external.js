@@ -60,44 +60,56 @@ Espo.define('custom:views/account/panels/test-external', 'view', function (Dep) 
 
         render: function () {
             Dep.prototype.render.call(this);
-
+        
+            // Simple escape helper to avoid XSS and avoid relying on getHelper
+            function esc(v) {
+                if (v === null || v === undefined) {
+                    return '';
+                }
+                return String(v)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+        
             var html = '';
-
+        
             if (this.isLoading) {
                 html = '<div class="text-muted">Loading external data…</div>';
             } else if (this.error) {
-                html = '<div class="text-danger">' + this.error + '</div>';
+                html = '<div class="text-danger">' + esc(this.error) + '</div>';
             } else if (!this.rows || !this.rows.length) {
                 html = '<div class="text-muted">No external data found for this account.</div>';
             } else {
-                // For now, use the first row only
-                var row = this.rows[0];
-
+                // Use the first row only
+                var row = this.rows[0] || {};
+        
                 html += '<table class="table table-bordered table-sm">';
                 html += '<tbody>';
-
+        
                 html += '<tr><th>Tradesperson ID</th><td>' +
-                    this.getHelper().escapeHtml(row.tradesperson_id) +
+                    esc(row.tradesperson_id) +
                     '</td></tr>';
-
+        
                 html += '<tr><th>Current Plan</th><td>' +
-                    this.getHelper().escapeHtml(row.current_plan_code) +
+                    esc(row.current_plan_code) +
                     '</td></tr>';
-
+        
                 html += '<tr><th>Next Renewal</th><td>' +
-                    this.getHelper().escapeHtml(row.next_renewal_date) +
+                    esc(row.next_renewal_date) +
                     '</td></tr>';
-
+        
                 html += '<tr><th>Created At</th><td>' +
-                    this.getHelper().escapeHtml(row.created_at) +
+                    esc(row.created_at) +
                     '</td></tr>';
-
+        
                 html += '</tbody>';
                 html += '</table>';
             }
-
+        
             this.$el.html(html);
         }
-
     });
 });
