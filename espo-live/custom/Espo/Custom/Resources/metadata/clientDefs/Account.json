@@ -15,13 +15,11 @@
       },
       {
         "name": "testExternal",
-        "label": "Test External",
-        "view": "custom:views/account/panels/test-external"
+        "reference": "testExternal"
       },
       {
         "name": "purchasedLeads",
-        "label": "Purchased Leads",
-        "view": "custom:views/account/panels/purchased-leads"
+        "reference": "purchasedLeads"
       }
     ]
   }
