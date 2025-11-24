@@ -46,7 +46,7 @@
     },
     "testExternal": {
         "index": 9,
-        "label": "Subscription",
+        "label": "Test External",
         "view": "custom:views/account/panels/test-external"
     },
     "_tabBreak_4": {

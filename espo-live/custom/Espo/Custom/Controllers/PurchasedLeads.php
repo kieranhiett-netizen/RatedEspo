@@ -44,7 +44,7 @@ class PurchasedLeads extends Base
                 price,
                 agent_verified,
                 created_at
-            FROM purchased_lead
+            FROM purchased_leads
             WHERE tradesperson_id = :userId
             ORDER BY lead_date DESC, id DESC
         ";

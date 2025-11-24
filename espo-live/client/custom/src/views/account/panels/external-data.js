@@ -1,4 +1,4 @@
-Espo.define('custom:views/account/panels/external-data', 'view', function (Dep) {
+Espo.define('custom:views/account/panels/external-data', 'views/record/panel', function (Dep) {
 
     return Dep.extend({
 
@@ -58,18 +58,22 @@ Espo.define('custom:views/account/panels/external-data', 'view', function (Dep) 
                 return;
             }
 
+            console.log((this.title || 'External data') + ': fetchData called for account', id);
+
             this.isLoading = true;
             this.error = null;
             this.renderContent();
 
             Espo.Ajax.getRequest(this.endpoint + id)
                 .then(function (response) {
+                    console.log((this.title || 'External data') + ': API response', response);
                     this.rows = response && response.rows ? response.rows : [];
                     this.isLoading = false;
                     this.error = null;
                     this.renderContent();
                 }.bind(this))
-                .catch(function () {
+                .catch(function (xhr) {
+                    console.error((this.title || 'External data') + ': API error', xhr);
                     this.rows = [];
                     this.isLoading = false;
                     this.error = this.translate('Error occurred', 'messages');
@@ -149,7 +153,7 @@ Espo.define('custom:views/account/panels/external-data', 'view', function (Dep) 
             }
 
             if (column.type === 'bool') {
-                return this.escapeString(value ? this.translate('Yes') : this.translate('No'));
+                return this.escapeString(value ? this.translate('Yes', 'labels') : this.translate('No', 'labels'));
             }
 
             if (column.type === 'date') {
