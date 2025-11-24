@@ -46,7 +46,8 @@
     },
     "testExternal": {
         "index": 9,
-        "reference": "testExternal"
+        "label": "Subscription",
+        "view": "custom:views/account/panels/test-external"
     },
     "_tabBreak_4": {
         "index": 10,
@@ -55,6 +56,7 @@
     },
     "purchasedLeads": {
         "index": 11,
-        "reference": "purchasedLeads"
+        "label": "Purchased Leads",
+        "view": "custom:views/account/panels/purchased-leads"
     }
 }

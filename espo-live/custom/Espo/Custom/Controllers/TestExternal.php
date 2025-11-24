@@ -16,31 +16,31 @@ class TestExternal extends Base
             return ['rows' => []];
         }
 
-        // Get the EntityManager from the container
         $entityManager = $this->getContainer()->get('entityManager');
-
-        // Load the Account by its Espo ID (e.g. 691b54b482cc749c3)
         $account = $entityManager->getEntity('Account', $accountId);
 
         if (!$account) {
             return ['rows' => []];
         }
 
-        // Use the custom field cUserId (DB column c_user_id)
         $cUserId = $account->get('cUserId');
 
         if (empty($cUserId)) {
-            // No external ID on this account, nothing to look up
             return ['rows' => []];
         }
 
-        // Use PDO from the same EntityManager connection
         $pdo = $entityManager->getPDO();
 
         $sql = "
-            SELECT id, tradesperson_id, current_plan_code, next_renewal_date, created_at
+            SELECT
+                id,
+                tradesperson_id,
+                current_plan_code,
+                next_renewal_date,
+                created_at
             FROM test_external
             WHERE tradesperson_id = :userId
+            ORDER BY next_renewal_date DESC, created_at DESC
         ";
 
         $sth = $pdo->prepare($sql);
