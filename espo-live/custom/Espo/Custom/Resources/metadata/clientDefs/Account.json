@@ -1,14 +1,16 @@
 {
   "additionalPanels": true,
-  "bottomPanels": {
-    "detail": [
-      "__APPEND__",
-      {
-        "name": "testExternal",
-        "label": "Test External",
-        "view": "custom:views/account/panels/test-external"
-      }
-    ]
-  }
-}
 
+  "recordBottomPanels": [
+    {
+      "name": "testExternal",
+      "label": "Test External",
+      "view": "custom:views/account/panels/test-external"
+    },
+    {
+      "name": "purchasedLeads",
+      "label": "Purchased Leads",
+      "view": "custom:views/account/panels/purchased-leads"
+    }
+  ]
+}
