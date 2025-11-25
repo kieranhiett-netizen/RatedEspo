@@ -1,0 +1,8 @@
+{
+    "fields": {
+        "cUserId": {
+            "type": "int",
+            "isCustom": true
+        }
+    }
+}

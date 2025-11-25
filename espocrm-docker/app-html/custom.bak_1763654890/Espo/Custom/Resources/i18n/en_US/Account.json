@@ -1,0 +1,12 @@
+{
+    "fields": {
+        "cUserID": "User_Id",
+        "cUserId": "UserId"
+    },
+    "options": {
+        "cUserID": []
+    },
+    "labels": {
+        "Test External": "Test External"
+    }
+}
