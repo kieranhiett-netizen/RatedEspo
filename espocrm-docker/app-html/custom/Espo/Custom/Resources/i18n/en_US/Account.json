@@ -1,6 +1,7 @@
 {
     "fields": {
-        "cUserID": "User_Id"
+        "cUserID": "User_Id",
+        "cUserId": "UserId"
     },
     "options": {
         "cUserID": []
