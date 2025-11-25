@@ -42,7 +42,7 @@ Espo.define('custom:views/account/panels/test-external', 'views/record/panel', f
             this.error = null;
             this.render();
 
-            Espo.Ajax.getRequest('TestExternal/account-data', { id: accountId })
+            Espo.Ajax.getRequest('TestExternal/account-data/' + accountId)
                 .then(function (response) {
                     self.rows = response && response.rows ? response.rows : [];
                     self.error = null;
