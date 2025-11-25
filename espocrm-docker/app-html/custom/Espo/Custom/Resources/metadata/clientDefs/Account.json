@@ -4,11 +4,10 @@
     "detail": [
       "__APPEND__",
       {
-        "name": "testExternal",
+        "name": "testExternalPanel",
         "label": "Test External",
         "view": "custom:views/account/panels/test-external"
       }
     ]
   }
 }
-

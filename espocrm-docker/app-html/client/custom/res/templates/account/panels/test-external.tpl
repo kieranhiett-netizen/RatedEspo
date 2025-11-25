@@ -1,23 +1,36 @@
-{{#if hasRows}}
-    <table class="table table-striped table-sm">
+<div class="clearfix" style="margin-bottom: 8px;">
+    <button type="button" class="btn btn-default btn-sm pull-right test-external-refresh" {{#if isLoading}}disabled{{/if}}>
+        {{#if isLoading}}Refreshing…{{else}}Refresh{{/if}}
+    </button>
+</div>
+
+{{#if isLoading}}
+    <div class="text-muted">Loading external records…</div>
+{{else if error}}
+    <div class="text-danger">{{error}}</div>
+{{else if hasRows}}
+    <table class="table table-bordered table-sm">
         <thead>
             <tr>
-                {{#each firstRow}}
-                    <th>{{@key}}</th>
-                {{/each}}
+                <th>Tradesperson ID</th>
+                <th>External Ref</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Data</th>
             </tr>
         </thead>
         <tbody>
             {{#each rows}}
                 <tr>
-                    {{#each this}}
-                        <td>{{this}}</td>
-                    {{/each}}
+                    <td>{{tradespersonId}}</td>
+                    <td>{{externalRef}}</td>
+                    <td>{{createdAt}}</td>
+                    <td>{{updatedAt}}</td>
+                    <td style="white-space: pre-wrap; max-width: 360px;">{{dataPreview}}</td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
 {{else}}
-    <div class="text-muted">No external data found.</div>
+    <div class="text-muted">No external records found.</div>
 {{/if}}
-
