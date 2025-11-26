@@ -1,0 +1,13 @@
+{
+  "additionalPanels": true,
+  "bottomPanels": {
+    "detail": [
+      "__APPEND__",
+      {
+        "name": "testExternalPanel",
+        "label": "Test External",
+        "view": "custom:views/account/panels/test-external"
+      }
+    ]
+  }
+}

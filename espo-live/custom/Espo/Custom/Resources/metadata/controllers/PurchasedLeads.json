@@ -1,0 +1,8 @@
+{
+    "modifications": {
+      "PurchasedLeads": {
+        "className": "Espo\\Custom\\Controllers\\PurchasedLeads"
+      }
+    }
+  }
+  

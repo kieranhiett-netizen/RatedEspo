@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "route": "/TestExternal/account/:id",
+      "params": {
+        "controller": "TestExternal",
+        "action": "getAccount"
+      }
+    }
+  ]
+}
+

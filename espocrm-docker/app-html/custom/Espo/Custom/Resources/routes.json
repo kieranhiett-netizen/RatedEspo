@@ -1,0 +1,18 @@
+[
+  {
+    "route": "/testExternalAccount/:id",
+    "method": "get",
+    "params": {
+      "controller": "TestExternal",
+      "action": "account"
+    }
+  },
+  {
+    "route": "/purchasedLeadsAccount/:id",
+    "method": "get",
+    "params": {
+      "controller": "PurchasedLeads",
+      "action": "account"
+    }
+  }
+]

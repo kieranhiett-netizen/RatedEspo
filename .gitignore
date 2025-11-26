@@ -25,3 +25,7 @@ dist/
 build/
 extensions/packages/*.zip
 
+espo-live-backup-*
+espocrm-backups/*.tar.gz
+/tmp/espo-restore-*
+/tmp/espo-backup-*

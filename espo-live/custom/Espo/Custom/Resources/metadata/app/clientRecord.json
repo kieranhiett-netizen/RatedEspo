@@ -1,0 +1,14 @@
+{
+  "panels": {
+    "testExternal": {
+      "name": "testExternal",
+      "label": "Test External",
+      "view": "custom:views/account/panels/test-external"
+    },
+    "purchasedLeads": {
+      "name": "purchasedLeads",
+      "label": "Purchased Leads",
+      "view": "custom:views/account/panels/purchased-leads"
+    }
+  }
+}

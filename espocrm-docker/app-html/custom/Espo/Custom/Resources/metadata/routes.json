@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "route": "/TestExternal/account-data/:id",
+      "params": {
+        "controller": "TestExternal",
+        "action": "getAccountData",
+        "acl": "read"
+      }
+    }
+  ]
+}

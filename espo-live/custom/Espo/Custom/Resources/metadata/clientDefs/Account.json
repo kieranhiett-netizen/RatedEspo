@@ -1,0 +1,43 @@
+{
+  "additionalPanels": true,
+
+  "recordBottomPanels": [
+    {
+      "name": "testExternal",
+      "label": "Test External",
+      "view": "custom:views/account/panels/test-external"
+    },
+    {
+      "name": "purchasedLeads",
+      "label": "Purchased Leads",
+      "view": "custom:views/account/panels/purchased-leads"
+    }
+  ],
+
+  "bottomPanels": {
+    "detail": [
+      {
+        "name": "activities",
+        "reference": "activities",
+        "disabled": true
+      },
+      {
+        "name": "history",
+        "reference": "history",
+        "disabled": true
+      },
+      {
+        "name": "testExternal",
+        "label": "Subscription",
+        "view": "custom:views/account/panels/test-external",
+        "order": 90
+      },
+      {
+        "name": "purchasedLeads",
+        "label": "Purchased Leads",
+        "view": "custom:views/account/panels/purchased-leads",
+        "order": 100
+      }
+    ]
+  }
+}
